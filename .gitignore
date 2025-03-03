@@ -1,0 +1,5 @@
+*.docx
+*.tmp
+*.xlsx
+Thumbs.db
+~$*
