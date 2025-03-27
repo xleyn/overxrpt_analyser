@@ -1,25 +1,31 @@
+import json
+from file_manager import FileManager
+
+
 class BadgeMapper:
     """Class for extracting data mapped from badge names"""
 
-    wholeBody = ("collar", "other whole body", "chest", "waist")
-    extremity = ("left finger", "right finger")
-    lens = "lens"
+    with open(FileManager.paths_from_proj_dir["badge_groupings"]) as f:
+        badge_groupings = json.load(f)
 
     hier_Excel_wb = ["DDE", "WHOLE BODY"]
     hier_Excel_lens = ["LDE", "LENS", "EYES"]
     hier_Excel_extrem = ["EXTREMITY"]
 
-    badge_to_col_mapping = {
-        wholeBody: "Whole Body",
-        extremity: "Total Extremity",
-        lens: "Lens",
-    }
-
-    badge_to_hierarchy_mapping = {
-        wholeBody: lambda b, hierarchy=hier_Excel_wb: [b] + hierarchy,
-        extremity: lambda b, hierarchy=hier_Excel_extrem: hierarchy,
-        lens: lambda b, hierarchy=hier_Excel_lens: hierarchy,
-    }
+    badge_to_col_mapping = dict(
+        zip(
+            map(tuple, badge_groupings.values()),
+            ["Whole Body", "Total Extremity", "Lens"],
+        )
+    )
+    get_hierarchy_funcs = [
+        lambda b, hierarchy=hier_Excel_wb: [b] + hierarchy,
+        lambda b, hierarchy=hier_Excel_extrem: hierarchy,
+        lambda b, hierarchy=hier_Excel_lens: hierarchy,
+    ]
+    badge_to_hierarchy_mapping = dict(
+        zip(map(tuple, badge_groupings.values()), get_hierarchy_funcs)
+    )
 
     @classmethod
     def get_dose_column(cls, badge: str) -> str:

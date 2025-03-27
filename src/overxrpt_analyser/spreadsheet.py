@@ -1,53 +1,14 @@
-from pathlib import Path
-import json
-import sys
-import time
-import warnings
-
 import re
 import pandas as pd
+import warnings
 
 from mappers import BadgeMapper, TemporalMapper
+from file_manager import FileManager
 
 warnings.filterwarnings(
     "ignore",
     message="Conditional Formatting extension is not supported and will be removed",
 )
-
-
-class IO:
-    """Class for managing I/O operations."""
-
-    if getattr(sys, "frozen", False):
-        project_dir = Path(sys.executable).parent
-    else:
-        project_dir = Path(__file__).parent.parent.parent
-
-    with open(project_dir.joinpath("config/file_structure.json")) as f:
-        config = json.load(f)
-        paths_from_proj_dir = dict(
-            zip(
-                config.keys(),
-                map(
-                    lambda v, project_dir=project_dir: project_dir / v, config.values()
-                ),
-            )
-        )
-
-    @classmethod
-    def creation_control(cls):
-        """Checks if I/O paths exist. Exits programme if not, rectifying the issues."""
-        need_to_quit = False
-        for path in cls.paths_from_proj_dir:
-            if not path.exists:
-                print(f"Does not exist: {path}")
-                need_to_quit = True
-        if need_to_quit:
-            print("Please rectify issues. Quitting application.")
-            time.sleep(3)
-            sys.exit()
-        else:
-            print("All I/O paths exist, as expected!")
 
 
 class Spreadsheet:
@@ -56,7 +17,7 @@ class Spreadsheet:
     """
 
     name = "Landauer client list and dose investigation limits.xlsx"
-    path = IO.paths_from_proj_dir["levels_spreadsheet"]
+    path = FileManager.paths_from_proj_dir["levels_spreadsheet"]
     sheets = pd.read_excel(path, sheet_name=None)
 
     df = None

@@ -3,7 +3,7 @@ from tkinter import Tk, filedialog
 
 import itertools
 
-from io_manager import Spreadsheet
+from spreadsheet import Spreadsheet
 from row import Row
 from report import Report
 from email_obj import Email

@@ -1,0 +1,5 @@
+{
+    "whole_body": ["collar", "other whole body", "chest", "waist"],
+    "extremity": ["left finger", "right finger"],
+    "lens": ["lens"]
+}

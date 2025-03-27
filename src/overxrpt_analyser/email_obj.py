@@ -3,7 +3,8 @@ from pathlib import Path
 import win32com.client
 from datetime import datetime
 
-from io_manager import Spreadsheet, IO
+from file_manager import FileManager
+from spreadsheet import Spreadsheet
 
 
 class Email:
@@ -11,7 +12,7 @@ class Email:
 
     def __init__(self, cur_report: "Report", subaccount_code: str):
         self.attachments = [rf"{str(cur_report.path)}"]
-        template_name = IO.paths_from_proj_dir["formal_investigation_template"]
+        template_name = FileManager.paths_from_proj_dir["formal_investigation_template"]
         if any([row.attachTemplate for row in cur_report.rows]):
             self.attachments.append(
                 str(Path(sys.argv[0]).parent.joinpath(template_name))

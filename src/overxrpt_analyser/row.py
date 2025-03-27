@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from io_manager import Spreadsheet
+from spreadsheet import Spreadsheet
 
 
 @dataclass
