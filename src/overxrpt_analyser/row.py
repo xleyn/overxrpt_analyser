@@ -154,11 +154,12 @@ class Row:
 
         """
         localResponse = {
-            True: self.gr_if_ytd_already_raised(),
-            False: f"For wearer {self.name}, the year to date alert on this report can be ignored as the annual formal investigation level is {self.level} mSv on their {self.badge} badge.",
+            True: lambda: self.gr_if_ytd_already_raised(),
+            False: lambda: f"For wearer {self.name}, the year to date alert on this report can be ignored as the annual formal investigation level is {self.level} mSv on their {self.badge} badge.",
         }
 
-        return localResponse[float(self.dose) >= float(self.level)]
+        # Evaluate the condition and call the appropriate lambda
+        return localResponse[float(self.dose) >= float(self.level)]()
 
     def gr_if_ytd_already_raised(self) -> str:
         """Returns a response string for the YTD case where dose >= level, based on whether the YTD has already been raised
@@ -204,7 +205,7 @@ class Row:
                     pn.badge == self.badge,
                     pn.period_type == self.period_type,
                     pn.period == self.period,
-                    float(self.dose) > float(pn.dose) >= float(self.urgentLevel),
+                    float(pn.dose) >= float(self.urgentLevel),
                 ]
 
                 if all(conditions):

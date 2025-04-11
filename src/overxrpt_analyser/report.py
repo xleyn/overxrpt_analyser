@@ -1,11 +1,13 @@
 from pathlib import Path
 import pdfplumber
 from spellchecker import SpellChecker
-
 import pandas as pd
+import logging
 
 from mappers import BadgeMapper
 from row import Row
+
+logging.basicConfig(level=logging.ERROR)
 
 
 class Report:
@@ -33,6 +35,7 @@ class Report:
             df (pd.DataFrame): pandas df for table on report
 
         """
+
         with pdfplumber.open(self.path.resolve()) as pdf:
             page = pdf.pages[0]
 

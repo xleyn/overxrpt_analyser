@@ -4,4 +4,6 @@
 Thumbs.db
 ~$*
 docs/
+dist/
 *.pyc
+.conda

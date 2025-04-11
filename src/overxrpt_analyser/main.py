@@ -1,5 +1,7 @@
+import sys
 import pathlib
 from tkinter import Tk, filedialog
+import time
 
 import itertools
 
@@ -19,7 +21,9 @@ class LandauerTask:
             None.
 
         """
+        print("Please choose Landauer Report to analyse.")
         self.cur_report_path = self._choose_path()
+        print("Analysing...")
         self.account_code = self._get_code(self.cur_report_path, "_AC", 6)
         self.subaccount_code = self._get_code(self.cur_report_path, "_SUB", 3)
         Spreadsheet.load_df(self.account_code, self.subaccount_code)
@@ -27,6 +31,8 @@ class LandauerTask:
         setattr(Row, "past_notifs", self._get_past_notifications())
         self.cur_report.analyse()
         self.email = Email(self.cur_report, self.subaccount_code)
+        print("Email generated. Closing software.")
+        time.sleep(2.5)
 
     @staticmethod
     def _choose_path() -> pathlib.Path:
@@ -42,6 +48,10 @@ class LandauerTask:
         path = filedialog.askopenfilename(
             title="Please select a Report.", filetypes=[("PDF files", "*.pdf")]
         )
+        if path == "":
+            root.destroy()
+            sys.exit()
+
         root.destroy()
         path = pathlib.Path(path)
 
