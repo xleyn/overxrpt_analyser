@@ -2,7 +2,7 @@ import sys
 import pathlib
 from tkinter import Tk, filedialog
 import time
-
+import traceback
 import itertools
 
 from spreadsheet import Spreadsheet
@@ -21,18 +21,25 @@ class LandauerTask:
             None.
 
         """
-        print("Please choose Landauer Report to analyse.")
-        self.cur_report_path = self._choose_path()
-        print("Analysing...")
-        self.account_code = self._get_code(self.cur_report_path, "_AC", 6)
-        self.subaccount_code = self._get_code(self.cur_report_path, "_SUB", 3)
-        Spreadsheet.load_df(self.account_code, self.subaccount_code)
-        self.cur_report = Report(self.cur_report_path, pull_levels=True)
-        setattr(Row, "past_notifs", self._get_past_notifications())
-        self.cur_report.analyse()
-        self.email = Email(self.cur_report, self.subaccount_code)
-        print("Email generated. Closing software.")
-        time.sleep(2.5)
+        try:
+            print("Please choose Landauer Report to analyse.")
+            self.cur_report_path = self._choose_path()
+            print("Analysing...")
+            self.account_code = self._get_code(self.cur_report_path, "_AC", 6)
+            self.subaccount_code = self._get_code(self.cur_report_path, "_SUB", 3)
+            Spreadsheet.load_df(self.account_code, self.subaccount_code)
+            self.cur_report = Report(self.cur_report_path, pull_levels=True)
+            setattr(Row, "past_notifs", self._get_past_notifications())
+            self.cur_report.analyse()
+            self.email = Email(self.cur_report, self.subaccount_code)
+            print("Email generated. Closing software.")
+            time.sleep(2.5)
+
+        except Exception as e:
+            traceback.print_exc()
+            print(f"Software crashed due to the following error: {e}")
+            time.sleep(5)
+            sys.exit()
 
     @staticmethod
     def _choose_path() -> pathlib.Path:

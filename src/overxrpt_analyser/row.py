@@ -32,6 +32,8 @@ class Row:
         """
         if not hasattr(Row, "freq2method_mapping"):
             self.init_class_attributes()
+        if self.dose == "M":
+            self.dose = "0"
         self.period, self.period_type = self.get_temporal_data()
         if self.pull_levels:
             self.level, self.urgentLevel = Spreadsheet.get_levels(

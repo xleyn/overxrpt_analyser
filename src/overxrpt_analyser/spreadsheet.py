@@ -52,7 +52,7 @@ class Spreadsheet:
         cls.df = df
         cls.row = row
         contact = df.loc[subaccount_code].values[-1]
-        if "@" in contact:
+        if isinstance(contact, str) and "@" in contact:
             cls.contact = contact
         else:
             raise ValueError("Contact email for subaccount not found!")
