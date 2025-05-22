@@ -1046,7 +1046,7 @@
    'PYMODULE'),
   ('email_obj',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\email_obj.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\email_obj.py',
    'PYMODULE'),
   ('et_xmlfile',
    'r:\\Users Public\\Students\\Nathan '
@@ -1062,7 +1062,7 @@
    'PYMODULE'),
   ('file_manager',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\file_manager.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\file_manager.py',
    'PYMODULE'),
   ('fileinput',
    'r:\\Users Public\\Students\\Nathan '
@@ -1255,7 +1255,7 @@
    'PYMODULE'),
   ('mappers',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\mappers.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\mappers.py',
    'PYMODULE'),
   ('mimetypes',
    'r:\\Users Public\\Students\\Nathan '
@@ -4245,7 +4245,7 @@
    'PYMODULE'),
   ('report',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\report.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\report.py',
    'PYMODULE'),
   ('rlcompleter',
    'r:\\Users Public\\Students\\Nathan '
@@ -4253,7 +4253,7 @@
    'PYMODULE'),
   ('row',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\row.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\row.py',
    'PYMODULE'),
   ('runpy',
    'r:\\Users Public\\Students\\Nathan '
@@ -4945,7 +4945,7 @@
    'PYMODULE'),
   ('spreadsheet',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\spreadsheet.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\spreadsheet.py',
    'PYMODULE'),
   ('sqlite3',
    'r:\\Users Public\\Students\\Nathan '

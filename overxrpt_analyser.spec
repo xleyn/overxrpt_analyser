@@ -1,14 +1,21 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 from pathlib import Path
-base_path = Path('.').resolve()
+from PyInstaller.utils.hooks import collect_data_files
+
+base_path = Path(".").resolve()
+spellchecker_data = collect_data_files("spellchecker")
 
 a = Analysis(
-    [str(base_path / 'src' / 'overxrpt_analyser' / 'main.py')],
+    [str(base_path / "src" / "main.py")],
     pathex=[str(base_path)],
     binaries=[],
-    datas=[(str(base_path / 'config'), 'config/'), (str(base_path / 'docs'), 'docs/')],
-    hiddenimports=[],
+    datas=spellchecker_data
+    + [
+        (str(base_path / "config"), "config/"),
+        (str(base_path / "docs"), "docs/"),
+    ],
+    hiddenimports=["spellchecker"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -23,7 +30,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='overxrpt_analyser',
+    name="overxrpt_analyser",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -42,5 +49,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='.',
+    name=".",
 )

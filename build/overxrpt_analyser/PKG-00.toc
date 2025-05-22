@@ -42,6 +42,10 @@
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
    'Crossley\\Landauer\\overxrpt_analyser\\.conda\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
+   'Crossley\\Landauer\\overxrpt_analyser\\.conda\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'PYSOURCE'),
   ('pyi_rth_pywintypes',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
    'Crossley\\Landauer\\overxrpt_analyser\\.conda\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\rthooks\\pyi_rth_pywintypes.py',
@@ -49,10 +53,6 @@
   ('pyi_rth_pythoncom',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
    'Crossley\\Landauer\\overxrpt_analyser\\.conda\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\rthooks\\pyi_rth_pythoncom.py',
-   'PYSOURCE'),
-  ('pyi_rth_pkgutil',
-   '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\.conda\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
    'PYSOURCE'),
   ('pyi_rth_multiprocessing',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
@@ -76,7 +76,7 @@
    'PYSOURCE'),
   ('main',
    '\\\\data\\Radprot\\Data\\Users Public\\Students\\Nathan '
-   'Crossley\\Landauer\\overxrpt_analyser\\src\\overxrpt_analyser\\main.py',
+   'Crossley\\Landauer\\overxrpt_analyser\\src\\main.py',
    'PYSOURCE')],
  'python313.dll',
  True,

@@ -1,9 +1,11 @@
+docs/
+dist/
+build/
+.conda/
 *.docx
 *.tmp
 *.xlsx
 Thumbs.db
 ~$*
-docs/
-dist/
 *.pyc
-.conda
+
