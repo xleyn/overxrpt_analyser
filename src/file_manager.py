@@ -10,7 +10,7 @@ class FileManager:
     if getattr(sys, "frozen", False):
         project_dir = Path(sys.executable).parent
     else:
-        project_dir = Path(__file__).parent.parent.parent
+        project_dir = Path(__file__).parent.parent
 
     with open(project_dir.joinpath("config/file_structure.json")) as f:
         config = json.load(f)
@@ -18,7 +18,10 @@ class FileManager:
             zip(
                 config.keys(),
                 map(
-                    lambda v, project_dir=project_dir: project_dir / v, config.values()
+                    lambda v, project_dir=project_dir: (
+                        Path(v) if Path(v).is_absolute() else project_dir / v
+                    ),
+                    config.values(),
                 ),
             )
         )
