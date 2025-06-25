@@ -44,11 +44,18 @@ class Spreadsheet:
         df = pd.read_excel(cls.path, sheet_name=selected_sheet, header=None, dtype=str)
         df = cls._crop_df(df)
         df = cls._initiate_multi_index(df)
+
+        if subaccount_code not in df.index:
+            raise KeyError(
+                f"Subaccount code {subaccount_code} not found in sheet {selected_sheet}. Please check whether it exists!"
+            )
+
         row = (
             df.loc[subaccount_code]
             if not df.loc[subaccount_code].str.contains("DEFAULT", case=False).any()
             else df.loc[account_code]
         )
+
         cls.df = df
         cls.row = row
         contact = df.loc[subaccount_code].values[-1]
