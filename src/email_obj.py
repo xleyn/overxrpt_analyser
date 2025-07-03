@@ -123,4 +123,5 @@ class Email:
         for attachment in self.attachments:
             email.Attachments.Add(attachment)
         email.To = Spreadsheet.contact
+        email.CC = Spreadsheet.CC
         email.Display()

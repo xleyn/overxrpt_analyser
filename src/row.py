@@ -212,9 +212,9 @@ class Row:
 
                 if all(conditions):
 
-                    return True
+                    return False
 
-            return False
+            return True
 
         else:
             return float(self.dose) >= float(self.urgentLevel)

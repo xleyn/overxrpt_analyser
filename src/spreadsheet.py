@@ -58,11 +58,12 @@ class Spreadsheet:
 
         cls.df = df
         cls.row = row
-        contact = df.loc[subaccount_code].values[-1]
+        contact = row.values[-2]
         if isinstance(contact, str) and "@" in contact:
             cls.contact = contact
         else:
             raise ValueError("Contact email for subaccount not found!")
+        cls.CC = row.values[-1]
 
     @staticmethod
     def _crop_df(df: pd.DataFrame) -> pd.DataFrame:
@@ -84,7 +85,7 @@ class Spreadsheet:
         df.columns = range(df.columns.size)
 
         # Cropping end of df
-        slice_end = df.iloc[0].str.contains("email", case=False).idxmax() + 1
+        slice_end = df.iloc[0].str.contains("CC", case=False).idxmax() + 1
         df = df.iloc[:, :slice_end]
 
         return df
