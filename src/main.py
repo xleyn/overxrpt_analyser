@@ -38,7 +38,7 @@ class LandauerTask:
         except Exception as e:
             traceback.print_exc()
             print(f"Software crashed due to the following error: {e}")
-            time.sleep(5)
+            time.sleep(20)
             sys.exit()
 
     @staticmethod
@@ -58,6 +58,11 @@ class LandauerTask:
         if path == "":
             root.destroy()
             sys.exit()
+
+        if "OVXRPT_" not in path:
+            raise ValueError(
+                "The file you selected is not a Landauer Overexposure Report!"
+            )
 
         root.destroy()
         path = pathlib.Path(path)
