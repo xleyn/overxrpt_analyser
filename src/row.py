@@ -128,8 +128,8 @@ class Row:
 
         """
         localResponse = {
-            True: f"For wearer {self.name} in the month of {self.period}, they exceeded the monthly local review level of {self.level} mSv on their {self.badge} badge.",
-            False: f"For wearer {self.name} in the month of {self.period}, the {self.badge} badge alert can be ignored as the monthly local review level is {self.level} mSv on their {self.badge} badge.",
+            True: f"For wearer {self.name} in the month of {self.period}, they exceeded the monthly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
+            False: f"For wearer {self.name} in the month of {self.period}, the {self.badge} badge alert can be ignored as the monthly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv.",
         }
 
         return localResponse[float(self.dose) >= float(self.level)]
@@ -142,8 +142,8 @@ class Row:
 
         """
         localResponse = {
-            True: f"For wearer {self.name} in the {self.period}, they exceeded the quarterly local review level of {self.level} mSv on their {self.badge} badge.",
-            False: f"For wearer {self.name} in the {self.period}, the {self.badge} badge alert can be ignored as the quarterly local review level is {self.level} mSv on their {self.badge} badge.",
+            True: f"For wearer {self.name} in the {self.period}, they exceeded the quarterly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
+            False: f"For wearer {self.name} in the {self.period}, the {self.badge} badge alert can be ignored as the quarterly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv.",
         }
 
         return localResponse[float(self.dose) >= float(self.level)]
@@ -157,7 +157,7 @@ class Row:
         """
         localResponse = {
             True: lambda: self.gr_if_ytd_already_raised(),
-            False: lambda: f"For wearer {self.name}, the year to date alert on this report can be ignored as the annual formal investigation level is {self.level} mSv on their {self.badge} badge.",
+            False: lambda: f"For wearer {self.name}, the year to date alert on this report can be ignored as the annual formal investigation level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv.",
         }
 
         # Evaluate the condition and call the appropriate lambda
@@ -172,7 +172,7 @@ class Row:
         """
         localResponse = {
             True: f"For wearer {self.name}, no further investigation is required on the {self.badge} badge year to date alert as this should have already been communicated and investigated.",
-            False: f"For wearer {self.name}, they have now exceeded the annual formal investigation level of {self.level} mSv on their {self.badge} badge.",
+            False: f"For wearer {self.name}, they have now exceeded the annual formal investigation level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
         }
 
         for pn in self.past_notifs:

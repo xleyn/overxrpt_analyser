@@ -1,4 +1,7 @@
 import sys
+import ctypes
+import getpass
+
 from pathlib import Path
 import win32com.client
 from datetime import datetime
@@ -68,6 +71,14 @@ class Email:
 
         body = f"""
         <html>
+        <head>
+        <style>
+        body {{
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 11pt;
+        }}
+        </style>
+        </head>
         <body>
         <p>Good {"morning" if datetime.now().time().hour < 12 else "afternoon"},</p>
         <p>Please find attached an overexposure notification from Landauer for subaccount {subaccount_code}.</p>
@@ -78,11 +89,24 @@ class Email:
         <p>Please investigate the reasons behind these high doses and report back to RRPS.</p>
         <p>{template_phrase if len(self.attachments) >= 2 else ""}</p>
         <p>Kind regards,</p>
+        <p>{self.get_duty_physicist_first_name()}</p>
         </body>
         </html>
         """
 
         return body
+
+    @staticmethod
+    def get_duty_physicist_first_name():
+        name = ctypes.create_unicode_buffer(1024)
+        size = ctypes.pointer(ctypes.c_ulong(len(name)))
+        result = ctypes.windll.secur32.GetUserNameExW(3, name, size)  # NameDisplay
+        if result:
+            full_name = name.value
+            first_name = full_name.split()[0]  # First word only
+            return first_name
+        else:
+            return getpass.getuser()  # fallback to username
 
     def draft(self):
         """Writes a draft of email for checking and opens in Outlook
