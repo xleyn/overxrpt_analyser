@@ -41,19 +41,10 @@ class Email:
             str: Bullet points for report responses, in HTML format
 
         """
-        bullets = {}
-        for row in report.rows:
-            bullets.setdefault(row.name, []).append(row.response)
 
-        for key, responses in bullets.items():
-            bullets[key] = " ".join(
-                [responses[0]]
-                + [
-                    r.replace(f"For wearer {key}", "Also for this wearer")
-                    for r in responses[1:]
-                ]
-            )
-        bullets = "".join([f"<li>{point}</li>" for point in list(bullets.values())])
+        bullets = "".join(
+            [f"<li>{point}</li>" for point in [row.response for row in report.rows]]
+        )
 
         return bullets
 

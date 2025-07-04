@@ -128,8 +128,8 @@ class Row:
 
         """
         localResponse = {
-            True: f"For wearer {self.name} in the month of {self.period}, they exceeded the monthly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
-            False: f"For wearer {self.name} in the month of {self.period}, the {self.badge} badge alert can be ignored as the monthly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv.",
+            True: f"Wearer {self.name} has exceeded the monthly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv in the month of {self.period}.",
+            False: f"For wearer {self.name}, the {self.badge} badge alert can be ignored as the monthly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv in the month of {self.period}.",
         }
 
         return localResponse[float(self.dose) >= float(self.level)]
@@ -142,8 +142,8 @@ class Row:
 
         """
         localResponse = {
-            True: f"For wearer {self.name} in the {self.period}, they exceeded the quarterly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
-            False: f"For wearer {self.name} in the {self.period}, the {self.badge} badge alert can be ignored as the quarterly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv.",
+            True: f"Wearer {self.name} has exceeded the quarterly local review level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv in the {self.period}.",
+            False: f"For wearer {self.name}, the {self.badge} badge alert can be ignored as the quarterly local review level is {self.level} mSv on their {self.badge} badge and they received {self.dose} mSv in the {self.period}.",
         }
 
         return localResponse[float(self.dose) >= float(self.level)]
@@ -171,8 +171,8 @@ class Row:
 
         """
         localResponse = {
-            True: f"For wearer {self.name}, no further investigation is required on the {self.badge} badge year to date alert as this should have already been communicated and investigated.",
-            False: f"For wearer {self.name}, they have now exceeded the annual formal investigation level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
+            True: f"For wearer {self.name}, no further investigation is required on the {self.badge} badge year to date alert as this will have already been communicated by RRPS and should have been investigated locally.",
+            False: f"Wearer {self.name} has now exceeded the annual formal investigation level of {self.level} mSv on their {self.badge} badge, with a dose of {self.dose} mSv.",
         }
 
         for pn in self.past_notifs:

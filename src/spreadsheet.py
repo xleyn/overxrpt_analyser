@@ -50,20 +50,21 @@ class Spreadsheet:
                 f"Subaccount code {subaccount_code} not found in sheet {selected_sheet}. Please check whether it exists!"
             )
 
-        row = (
-            df.loc[subaccount_code]
-            if not df.loc[subaccount_code].str.contains("DEFAULT", case=False).any()
-            else df.loc[account_code]
-        )
+        row = df.loc[subaccount_code]
+
+        cls.contact = row.values[-2]
+        cls.CC = row.values[-1]
+
+        if not (isinstance(cls.contact, str) and "@" in cls.contact):
+            raise ValueError("Contact email for subaccount not found!")
+        if not (isinstance(cls.CC, str) and "@" in cls.CC):
+            raise ValueError("Site lead CC not found!")
+
+        if df.loc[subaccount_code].str.contains("DEFAULT", case=False).any():
+            row = df.loc[account_code]
 
         cls.df = df
         cls.row = row
-        contact = row.values[-2]
-        if isinstance(contact, str) and "@" in contact:
-            cls.contact = contact
-        else:
-            raise ValueError("Contact email for subaccount not found!")
-        cls.CC = row.values[-1]
 
     @staticmethod
     def _crop_df(df: pd.DataFrame) -> pd.DataFrame:
