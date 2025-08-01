@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+import numpy as np
 import warnings
 
 from mappers import BadgeMapper, TemporalMapper
@@ -158,6 +159,10 @@ class Spreadsheet:
 
         if foundCol is None:
             raise ValueError("Badge type and period type not found in spreadsheet!")
+
+        # account for if multiple DDE's labelled on spreadsheet - for other whole body badge, take lowest level
+        if badge == "other whole body" and len(foundCol) > 1:
+            foundCol = foundCol[np.argmin(cls.row[foundCol].values.astype(float))]
 
         level = cls.row[foundCol]
         urgentLevel = cls.row[foundCol[0], "Urgent"]
