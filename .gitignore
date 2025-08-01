@@ -2,6 +2,7 @@ docs/
 dist/
 build/
 .conda/
+test_data/
 *.docx
 *.tmp
 *.xlsx
